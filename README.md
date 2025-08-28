@@ -99,7 +99,7 @@ make testmemory # Will display memory report in the terminal
 
 ### What to submit?
 
-Please submit **ONLY** the `student.c` file to Gradescope by 2/21/2025.
+Please submit **ONLY** the `student.c` file to Gradescope.
 
 ### Test inputs
 
