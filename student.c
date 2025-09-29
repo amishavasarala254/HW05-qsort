@@ -32,7 +32,12 @@ int countNewLine(FILE *fptr)
 bool StudentRead(char *filename, Student **stu, int *numelem)
 {
     /* 1.1: open the file to read */
-    FILE *fptr=NULL;
+
+    FILE *fptr=fopen(filename);
+    if (*fptr == NULL) 
+    {
+        return false; 
+    }
     // the name of the file to open is stored in filename
     // if fopen fails, return false
     // do not use fclose since fopen already fails
@@ -55,7 +60,7 @@ bool StudentRead(char *filename, Student **stu, int *numelem)
     }
 
     /* 1.2 allocate memory for the data */
-    Student *stuptr = NULL;
+    Student *stuptr = (Student *)(malloc(numline * sizeof(int)));
     // stuptr is an array of type Student
     // refer to hw5.h to understand the type Student
     // the number of elements in this array is numline
@@ -63,7 +68,17 @@ bool StudentRead(char *filename, Student **stu, int *numelem)
     // check whether memory allocation fails
 
     /* end of 1.2: allocate memory for the data */
-
+int i = 0 ;
+    while ((ch = fgetc(fptr)) != EOF) 
+        {
+          stuptr[i] = ch;
+            if (stupr[i] == 0) 
+            {
+            printf("Failed memory allocation");
+                
+            }
+            i = i + 1;
+        }
     /* 1.3: read data from the file */
     // read the data from the file
     // store the data to the array stuptr
@@ -80,6 +95,12 @@ bool StudentRead(char *filename, Student **stu, int *numelem)
 bool StudentWrite(char *filename, Student *stu, int numelem)
 {
     // open the file to write
+ FILE *fptr=fopen(filename);
+    if (*fptr == NULL) 
+    {
+        return false; 
+    }
+   
     // the name of file to open is stored in string filename
     // if fopen fails, return false
     // do not use fclose since fopen already fails
