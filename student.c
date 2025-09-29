@@ -1,4 +1,4 @@
-// ***
+  // ***
 // *** You MUST modify this file
 // ***
 
@@ -32,7 +32,11 @@ int countNewLine(FILE *fptr)
 bool StudentRead(char *filename, Student **stu, int *numelem)
 {
     /* 1.1: open the file to read */
-    FILE *fptr=NULL;
+    FILE *fptr= fopen(filename, "r");
+    if (fptr == NULL) {
+        return false;
+    }
+    
     // the name of the file to open is stored in filename
     // if fopen fails, return false
     // do not use fclose since fopen already fails
@@ -47,6 +51,7 @@ bool StudentRead(char *filename, Student **stu, int *numelem)
     // You need to check whether fseek or fopen fails
     // Do not use rewind because it does not report whether it fails
     int rtv; // return value
+   
     rtv = fseek(fptr, 0, SEEK_SET);
     if (rtv == -1) // fseek fails
     {
@@ -55,7 +60,7 @@ bool StudentRead(char *filename, Student **stu, int *numelem)
     }
 
     /* 1.2 allocate memory for the data */
-    Student *stuptr = NULL;
+     Student *stuptr = (Student *)malloc(numline * sizeof(Student));
     // stuptr is an array of type Student
     // refer to hw5.h to understand the type Student
     // the number of elements in this array is numline
@@ -69,7 +74,15 @@ bool StudentRead(char *filename, Student **stu, int *numelem)
     // store the data to the array stuptr
     // fclose the file after read of data is done
 
+
     /* end of 1.3: allocate memory for the data */
+while (fgets(line, sizeof(line), fptr) && i < numline) {
+        // Parse line into id and name
+        if (sscanf(line, "%d %49s", &stuptr[i].id, stuptr[i].name) == 2) {
+         i++;
+        }
+    }
+
 
     *numelem = numline;
     *stu = stuptr;
@@ -80,13 +93,23 @@ bool StudentRead(char *filename, Student **stu, int *numelem)
 bool StudentWrite(char *filename, Student *stu, int numelem)
 {
     // open the file to write
+File f = fopen(filename); 
+    if (f == NULL) 
+    {
+        return false;
+    }
     // the name of file to open is stored in string filename
     // if fopen fails, return false
     // do not use fclose since fopen already fails
     // stu is an array of type Student
+    for (int i = 0; i < numelem; i++) 
+        {
+            fprintf(f,"%d %s\n",stu[i].ID,stu[i].name);
+        }
     // refer to hw5.h to understand the type Student
     // the number of elements in array stu is numelem
     // write the data from array stu to the opened file
+    
     // fclose the file in the end
 
     return true;
