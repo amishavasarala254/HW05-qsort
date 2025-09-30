@@ -79,7 +79,7 @@ char line[1024];
     /* end of 1.3: allocate memory for the data */
 while (fgets(line, sizeof(line), fptr) && i < numline) {
         // Parse line into id and name
-        if (sscanf(line, "%d %49s", &stuptr[i].id, stuptr[i].name) == 2) {
+        if (sscanf(line, "%d %49s", &stuptr[i].ID, stuptr[i].name) == 2) {
          i++;
         }
     }
