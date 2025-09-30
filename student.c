@@ -189,7 +189,7 @@ bool areStudentsSorted(Student *stu, int numelem, int (*compar)(const void *, co
   }
   for (i = 0; i < numelem-1; i++) 
 {
-if ((compar(&stu[i], &stu[i+1]) > 0) 
+if ((compar(&stu[i], &stu[i+1])) > 0) 
 {
   return false;
 }
