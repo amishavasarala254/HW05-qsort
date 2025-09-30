@@ -75,6 +75,7 @@ bool StudentRead(char *filename, Student **stu, int *numelem)
     // fclose the file after read of data is done
 
 char line[1024];
+  int i = 0;
     /* end of 1.3: allocate memory for the data */
 while (fgets(line, sizeof(line), fptr) && i < numline) {
         // Parse line into id and name
@@ -97,7 +98,7 @@ while (fgets(line, sizeof(line), fptr) && i < numline) {
 bool StudentWrite(char *filename, Student *stu, int numelem)
 {
     // open the file to write
-File f = fopen(filename); 
+File f = fopen(filename,"*r"); 
     if (f == NULL) 
     {
         return false;
