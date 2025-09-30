@@ -121,16 +121,32 @@ void sortStudents(Student *stu, int numelem, int (*compar)(const void *, const v
     /* Fill in to call qsort function to sort array stu */
     // stu: an array of Students. numelem: number of elements in the array. compar: comparison function
     // refer to hw5.h to understand the type Student
+  qsort(stu,numelem, sizeof(stu[0],int (*compar)(compareID(),compareName());
 }
 
 /* This is the fourth function you need to implement */
 int compareID(const void *p1, const void *p2)
 {
     /* Fill in to compare p1 and p2 by id */
+  int id1 = *(const int*)p1;
+  int id2 = *(const int*)p2;
+  
     // return a negative value if the ID of the first student is smaller
+  if (id1 < id2) 
+  {
+
+    return -1;
+  }
     // return a positive value if the ID of the first student is larger
     // return zero if the IDs of the two students are the same
-
+  if (id1 == id2) 
+  {
+    return 0;
+  }
+if (id1 > id2) 
+{
+  return 1;
+}
     // dummy return to avoid compile error
     // you need to replace it with your own return statement
     return 0;
@@ -138,7 +154,12 @@ int compareID(const void *p1, const void *p2)
 
 /* This is the fifth function you need to implement */
 int compareName(const void *p1, const void *p2)
-{
+{    const char **st1 = (const char **)a;
+    const char **st2 = (const char **)b;
+    
+    // strcmp returns <0, 0, or >0 based on lexicographical order,
+    // which is exactly what qsort expects.
+    return strcmp(*st1, *st2);
     /* Fill in to compare p1 and p2 by name */
     // use strcmp function to compare two strings
     // return a negative value if the name of the first student is alphabetically earlier
@@ -155,10 +176,22 @@ bool areStudentsSorted(Student *stu, int numelem, int (*compar)(const void *, co
 {
     /* Fill in to check if the stu array is sorted according to compar */
     // return true if the stu array is sorted according to compar
+  int i; 
+
+  if (numelem <= 1) 
+  {
+    return true;
+  }
+  for (i = 0; i < numelem-1; i++) 
+{
+if ((compar(&stu[i], &stu[i+1]) > 0) 
+{
+  return false;
+}
     // return false otherwise
     // refer to hw5.h to understand the type Student
-
-    // dummy return to avoid compile error
-    // you need to replace it with your own return statement
+  }
+  
+ 
     return true;
 }
