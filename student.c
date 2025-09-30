@@ -74,7 +74,7 @@ bool StudentRead(char *filename, Student **stu, int *numelem)
     // store the data to the array stuptr
     // fclose the file after read of data is done
 
-
+char line[1024];
     /* end of 1.3: allocate memory for the data */
 while (fgets(line, sizeof(line), fptr) && i < numline) {
         // Parse line into id and name
@@ -86,6 +86,10 @@ while (fgets(line, sizeof(line), fptr) && i < numline) {
 
     *numelem = numline;
     *stu = stuptr;
+
+  numline = i; 
+
+  fclose(fptr);
     return true;
 }
 
@@ -121,7 +125,7 @@ void sortStudents(Student *stu, int numelem, int (*compar)(const void *, const v
     /* Fill in to call qsort function to sort array stu */
     // stu: an array of Students. numelem: number of elements in the array. compar: comparison function
     // refer to hw5.h to understand the type Student
-  qsort(stu,numelem, sizeof(stu[0],int (*compar)(compareID(),compareName());
+  qsort(stu,numelem, sizeof(stu[0]),compar);
 }
 
 /* This is the fourth function you need to implement */
