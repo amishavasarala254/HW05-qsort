@@ -159,8 +159,8 @@ if (id1 > id2)
 
 /* This is the fifth function you need to implement */
 int compareName(const void *p1, const void *p2)
-{    const char **st1 = (const char **)a;
-    const char **st2 = (const char **)b;
+{    const char **st1 = (const char **)p1;
+    const char **st2 = (const char **)p2;
     
     // strcmp returns <0, 0, or >0 based on lexicographical order,
     // which is exactly what qsort expects.
