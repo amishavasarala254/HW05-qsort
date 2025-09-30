@@ -98,7 +98,7 @@ while (fgets(line, sizeof(line), fptr) && i < numline) {
 bool StudentWrite(char *filename, Student *stu, int numelem)
 {
     // open the file to write
-File f = fopen(filename,"*r"); 
+FILE f = fopen(filename,"*r"); 
     if (f == NULL) 
     {
         return false;
